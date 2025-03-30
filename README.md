@@ -1,1 +1,1 @@
-# rock-paper-scissors
+# brick-papyrus-khopesh
