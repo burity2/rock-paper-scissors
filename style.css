@@ -1,0 +1,55 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    background-color: rgb(211, 173, 104);
+    font-family: fantasy;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 150px;
+    padding-top: 100px;
+}
+
+#bottom-text {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 50px;
+    font-size: 50px;
+    font-family: fantasy;
+    margin: auto;
+}
+
+.human-side, .machine-side {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 20px;
+}
+
+button {
+    width: auto;
+    height: 40px;
+    font-size: large;
+    font-family: fantasy;
+    background-color: lab(87.56% -2.14 27.11);
+}
+
+#human-score-tracker,
+#machine-score-tracker {
+    font-size: 30px;
+    font-family: fantasy;
+    padding: 8px 18px;
+    background-color: rgb(37, 35, 14);
+    border-radius: 100px;   
+    color: rgb(235, 219, 168);
+}

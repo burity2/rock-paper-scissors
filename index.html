@@ -3,12 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Ancient Egypt Rock, Papers, Scissors</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
+    <div class = "container">
+        <div class = "human-side">
+            <div id = "human-score-tracker">score: 0</div>
+            <img src="./cdm2vpmntmp91.jpg" alt="a common egyptian man" height="200px" width="auto">
+            <div class="options">
+                <button id="brick-button">Brick</button>
+                <button id="papyrus-button">Papyrus</button>
+                <button id="khopesh-button">Khopesh</button>
+            </div>
+        </div>
+        <div class = "machine-side">
+            <div id = "machine-score-tracker">score: 0</div>
+            <img src="./images.jpg" alt="the misterous sphynx" height="220px" width="auto">
+            <div>
+                <div class = "machine-answer"></div>
+            </div>
+        </div>
+    </div>
+    <div id="bottom-text">Which tool will you pick to challenge the Sphynx?</div>
 
     <script src="./jscript.js"></script>
-
 </body>
 </html>
