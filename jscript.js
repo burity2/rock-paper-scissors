@@ -1,37 +1,35 @@
+$(document).ready(() => {
+
 let humanScore = 0;
 let computerScore = 0;
 
-const humanScoreTracker = document.getElementById("human-score-tracker")
-const humanScoreUpdater = document.createElement("div")
+const $humanScoreTracker = $("#human-score-tracker");
+const $machineScoreTracker = $("#machine-score-tracker");
+const $bottomText = $("#bottom-text");
+const $gameReset = $("#reset-btn");
 
-const machineScoreTracker = document.getElementById("machine-score-tracker")
-const machineScoreUpdater = document.createElement("div")
+let getHumanChoice = "";
+const $humanChoice = $(".options");
 
-const bottomText = document.getElementById("bottom-text")
-const roundUpdater = document.createElement("div")
-
-let getHumanChoice = ""
-const humanChoice = document.querySelector(".options");
-
-humanChoice.addEventListener ("click", (event) => {
+$humanChoice.on("click", (event) => {
     let target = event.target;
 
     switch(target.id) {
         case "brick-button":
             getHumanChoice = "Brick"
-            //console.log(getHumanChoice);
             break;
+
         case "papyrus-button":
             getHumanChoice = "Papyrus"
-           //console.log(getHumanChoice);
             break;
+
         case "khopesh-button":
             getHumanChoice = "Khopesh"
-           //console.log(getHumanChoice);
             break;
-    }
+    };
+
+    gamePlay();
 });
-//console.log(getHumanChoice)
 
 function getComputerChoice() {
     const choice = Math.floor(Math.random() * 3);
@@ -41,164 +39,70 @@ function getComputerChoice() {
         return "Papyrus";
     } else if (choice === 0) {
         return "Brick";
-    }
-}
+    };
+};
 
-// const playRound = document.querySelector(".options");
-// playRound.addEventListener ("click", round)
+function round () {
+    let computerCall = getComputerChoice()
 
-function round (playerCall = getHumanChoice, computerCall) {
-    computerCall = getComputerChoice()
-
-    machineScoreTracker.textContent = "score: " + computerScore
-        humanScoreTracker.textContent = "score: " + humanScore
+    $machineScoreTracker.text("score: " + computerScore)
+    $humanScoreTracker.text("score: " + humanScore)
     
     if (getHumanChoice === computerCall) {
-        bottomText.textContent = "Tie! Both chose " + getHumanChoice
+        $bottomText.text("Tie! Both chose " + getHumanChoice)
        
-
-        //console.log("tie")
-        //return "Tie! Both chose " + playerCall
     } else if (
         (getHumanChoice === "Brick" && computerCall === "Papyrus") ||
         (getHumanChoice === "Papyrus" && computerCall === "Khopesh") ||
         (getHumanChoice === "Khopesh" && computerCall === "Brick") 
         ) {
         computerScore++
-        machineScoreTracker.textContent = "score: " + computerScore
-        bottomText.textContent = "You lost! The Sphynx's " + computerCall + " beats your " + getHumanChoice
+        $machineScoreTracker.text("score: " + computerScore)
+        $bottomText.text("You lost! The Sphynx's " + computerCall + " beats your " + getHumanChoice)
 
-
-        //console.log()
-        //return "You lost! " + computerCall + " beats " + playerCall;
     } else {
         humanScore++
-        humanScoreTracker.textContent = "score: " + humanScore
-        bottomText.textContent = "You Win! Your " + getHumanChoice + " beats the Sphynx's " + computerCall
+        $humanScoreTracker.text("score: " + humanScore)
+        $bottomText.text("You Win! Your " + getHumanChoice + " beats the Sphynx's " + computerCall)
         
-        //console.log("win")
-        //return "You win! " + playerCall + " beats " + computerCall;
-    }
-}
+    };
+};
 
-const playGame = document.querySelector(".options")
-playGame.addEventListener ("click", gamePlay)
-
-function gamePlay () {
+function gamePlay() {
     round()
 
     if (humanScore === 5) {
-        bottomText.textContent = "Victory! You won, human! Try again?"
-        //console.log("humans win, " + "humans:" + humanScore + "machines" + computerScore)
+        $bottomText.text("Victory! You won, human! Try again?")
         humanScore = 0
         computerScore = 0
-        machineScoreTracker.textContent = "Defeat!"
-        humanScoreTracker.textContent = "Victory!"
+        $machineScoreTracker.text("Defeat!")
+        $humanScoreTracker.text("Victory!")
 
 
     } else if (computerScore === 5) {
-        bottomText.textContent = "Game over! Run for your life, human! Retry in your next life?"
-        //console.log("humans lost, " + "humans:" + humanScore + "machines" + computerScore)
+        $bottomText.text("Game over! Run for your life, human! Retry in your next life?")
         humanScore = 0
         computerScore = 0
-        machineScoreTracker.textContent = "Victory!"
-        humanScoreTracker.textContent = "Defeat!"
-}
-}
+        $machineScoreTracker.text("Victory!")
+        $humanScoreTracker.text("Defeat!")
+    };
+};
 
+$gameReset.on('click', () => {
 
-```
-function playRound(playerCall, computerCall) {
-    let computerCall = getComputerChoice()
+    if (window.confirm("Are you sure? This will reset the score!")){
 
-    if (playerCall === computerCall) {
-        return "Tie! Both chose " + playerCall
-    } else if (
-        (playerCall === "Brick" && computerCall === "Papyrus") ||
-        (playerCall === "Papyrus" && computerCall === "Khopesh") ||
-        (playerCall === "Khopesh" && computerCall === "Brick") 
-        ) {
-        computerScore++ 
-        return "You lost! " + computerCall + " beats " + playerCall;
-    } else {
-        humanScore++
-        return "You win! " + playerCall + " beats " + computerCall;
-    }
-}
+        if (humanScore > computerScore){
+        $bottomText.text("The brave human deny his score and restarts the game!")
 
-const endRound = document.querySelector(".options");
-endRound.addEventListener("mouseup", finishGame)
+        } else {
+        $bottomText.text("The kind Sphynx ignores its score and restarts the game!")
+        };
 
-function finishGame () {
-    if (humanScore === 5) {
-        console.log("humans win, " + "humans:" + humanScore + "machines" + computerScore)
         humanScore = 0
         computerScore = 0
-
-    } else if (computerScore === 5) {
-        console.log("humans lost, " + "humans:" + humanScore + "machines" + computerScore)
-        humanScore = 0
-        computerScore = 0
-    
-    } else {
-        return " "
-    }
-}
-
-function playGame () {
-    let humanScore = 0;
-    let computerScore = 0;
-
-    while (humanScore < 5 && computerScore < 5) {
-        //const humanMove == getHumanChoice;
-        const computerMove = getComputerChoice();
-
-        const roundResult = playRound(getHumanChoice, computerMove);
-        console.log(roundResult);
-
-        if (roundResult.includes("You win")) humanScore++;
-        else if (roundResult.includes("You lost")) computerScore++;
-
-        console.log("Score: Human " + humanScore + " , Computer " + computerScore);
-    }
-
-    
-}
-
-
-function getHumanChoice () {
-    let sign = prompt("Take your move! (Brick, Papyrus or Khopesh)")
-    if (sign.toLowerCase() === "khopesh") {
-        return "Khopesh";
-    } else if (sign.toLowerCase() === "papyrus") {
-        return "Papyrus";
-    } else if (sign.toLowerCase() === "brick") {
-        return "Brick";
-    }
-
-function playGame () {
-    let humanScore = 0;
-    let computerScore = 0;
-
-    while (humanScore < 5 && computerScore < 5) {
-        const humanChoice = getHumanChoice();
-        const computerChoice = getComputerChoice();
-
-        const roundResult = playRound(humanChoice, computerChoice);
-        console.log(roundResult);
-
-        if (roundResult.includes("Human wins")) humanScore++;
-        else if (roundResult.includes("Human lost")) computerScore++;
-
-        console.log("Score: Human " + humanScore + " , Computer " + computerScore);
-    }
-
-    if (humanScore === 5) {
-        return "Humans Win!" 
-    } else {
-        return "Machines Win!"
-    }
-}
-
-console.log(playGame());
-```
+        $machineScoreTracker.text("score: " + computerScore)
+        $humanScoreTracker.text("score: " + humanScore)
+    };
+});
+});

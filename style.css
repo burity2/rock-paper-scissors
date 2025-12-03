@@ -14,7 +14,7 @@ body {
     align-items: center;
     justify-content: center;
     gap: 150px;
-    padding-top: 100px;
+    padding-top: 50px;
 }
 
 #bottom-text {
@@ -23,9 +23,10 @@ body {
     justify-content: center;
     align-items: center;
     padding: 30px 50px;
-    font-size: 50px;
+    font-size: 40px;
     font-family: fantasy;
     margin: auto;
+    text-align: center;
 }
 
 .human-side, .machine-side {
@@ -42,6 +43,13 @@ button {
     font-size: large;
     font-family: fantasy;
     background-color: lab(87.56% -2.14 27.11);
+}
+
+#reset-btn {
+    color: lab(87.56% -2.14 27.11);
+    background-color: rgb(37, 35, 14);
+    border: solid 2px;
+    border-color: lab(87.56% -2.14 27.11);
 }
 
 #human-score-tracker,

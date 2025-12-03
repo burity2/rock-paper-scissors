@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ancient Egypt Rock, Papers, Scissors</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="./style.css">
 </head>
 
@@ -20,13 +21,11 @@
         </div>
         <div class = "machine-side">
             <div id = "machine-score-tracker">score: 0</div>
-            <img src="./images.jpg" alt="the misterous sphynx" height="220px" width="auto">
-            <div>
-                <div class = "machine-answer"></div>
-            </div>
+            <img src="./images.jpg" alt="the misterous sphynx" height="200px" width="auto">
+            <button id="reset-btn">game reset</button>
         </div>
     </div>
-    <div id="bottom-text">Which tool will you pick to challenge the Sphynx?</div>
+    <div id="bottom-text">Which tool will you pick to challenge the Sphynx? <br>First to score 5 wins!<br></div>
 
     <script src="./jscript.js"></script>
 </body>
