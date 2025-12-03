@@ -90,6 +90,10 @@ function gamePlay() {
 
 $gameReset.on('click', () => {
 
+    if (humanScore === 0 && computerScore === 0){
+        $bottomText.text("There must be at least a score point to reset the game.")
+    
+    } else {
     if (window.confirm("Are you sure? This will reset the score!")){
 
         if (humanScore > computerScore){
@@ -103,6 +107,7 @@ $gameReset.on('click', () => {
         computerScore = 0
         $machineScoreTracker.text("score: " + computerScore)
         $humanScoreTracker.text("score: " + humanScore)
+    };
     };
 });
 });
