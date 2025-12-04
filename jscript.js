@@ -90,7 +90,11 @@ function gamePlay() {
 
 $gameReset.on('click', () => {
 
-    if (humanScore === 0 && computerScore === 0){
+    if ($machineScoreTracker.text().includes("Victory!" || "Defeat!")){
+        scoreReset();
+        $bottomText.text("Which tool will you pick to challenge the Sphynx? First to score 5 wins!")
+    
+    } else if (humanScore === 0 && computerScore === 0){
         $bottomText.text("There must be at least a score point to reset the game.")
     
     } else {
@@ -103,11 +107,15 @@ $gameReset.on('click', () => {
         $bottomText.text("The kind Sphynx ignores its score and restarts the game!")
         };
 
+        scoreReset();
+    };
+    };
+});
+
+    function scoreReset(){
         humanScore = 0
         computerScore = 0
         $machineScoreTracker.text("score: " + computerScore)
         $humanScoreTracker.text("score: " + humanScore)
-    };
-    };
-});
+    }
 });
